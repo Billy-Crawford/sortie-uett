@@ -1,9 +1,7 @@
-// src/components/sections/checklist.tsx
-
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Backpack, PartyPopper } from "lucide-react";
+import { Check, PartyPopper } from "lucide-react";
 import useLocalStorage from "@/hooks/use-local-storage";
 
 const items = [
@@ -52,15 +50,18 @@ export default function ChecklistSection() {
       />
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
+
+        {/* ── Layout : 2 colonnes desktop, 1 colonne mobile ── */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "80px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
+            gap: "clamp(40px, 6vw, 80px)",
             alignItems: "start",
           }}
         >
-          {/* ── Left ── */}
+
+          {/* ── Left — header + progress ── */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,7 +96,7 @@ export default function ChecklistSection() {
                 color: "rgba(255,255,255,0.45)",
                 fontSize: "15px",
                 lineHeight: 1.75,
-                marginBottom: "48px",
+                marginBottom: "40px",
                 maxWidth: "340px",
               }}
             >
@@ -103,26 +104,25 @@ export default function ChecklistSection() {
               Ta progression est sauvegardée automatiquement.
             </p>
 
-            {/* Progress ring + number */}
-            <div style={{ display: "flex", alignItems: "center", gap: "28px" }}>
-              {/* Circular progress */}
-              <div style={{ position: "relative", width: "96px", height: "96px", flexShrink: 0 }}>
-                <svg width="96" height="96" style={{ transform: "rotate(-90deg)" }}>
+            {/* Progress ring */}
+            <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              <div style={{ position: "relative", width: "88px", height: "88px", flexShrink: 0 }}>
+                <svg width="88" height="88" style={{ transform: "rotate(-90deg)" }}>
                   <circle
-                    cx="48" cy="48" r="40"
+                    cx="44" cy="44" r="36"
                     fill="none"
                     stroke="rgba(255,255,255,0.07)"
                     strokeWidth="6"
                   />
                   <motion.circle
-                    cx="48" cy="48" r="40"
+                    cx="44" cy="44" r="36"
                     fill="none"
                     stroke="var(--primary)"
                     strokeWidth="6"
                     strokeLinecap="round"
-                    strokeDasharray={`${2 * Math.PI * 40}`}
+                    strokeDasharray={`${2 * Math.PI * 36}`}
                     animate={{
-                      strokeDashoffset: 2 * Math.PI * 40 * (1 - progress / 100),
+                      strokeDashoffset: 2 * Math.PI * 36 * (1 - progress / 100),
                     }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   />
@@ -134,16 +134,14 @@ export default function ChecklistSection() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    flexDirection: "column",
                   }}
                 >
                   <span
                     style={{
                       fontFamily: "var(--font-display)",
-                      fontSize: "20px",
+                      fontSize: "18px",
                       fontWeight: 800,
                       color: "#fff",
-                      lineHeight: 1,
                     }}
                   >
                     {progress}%
@@ -171,7 +169,7 @@ export default function ChecklistSection() {
               </div>
             </div>
 
-            {/* All done message */}
+            {/* All done */}
             <AnimatePresence>
               {allDone && (
                 <motion.div
@@ -179,7 +177,7 @@ export default function ChecklistSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
                   style={{
-                    marginTop: "32px",
+                    marginTop: "28px",
                     padding: "16px 20px",
                     background: "rgba(22,163,74,0.15)",
                     border: "1px solid rgba(22,163,74,0.3)",
@@ -198,7 +196,7 @@ export default function ChecklistSection() {
             </AnimatePresence>
           </motion.div>
 
-          {/* ── Right — list ── */}
+          {/* ── Right — liste ── */}
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {items.map((item, i) => {
               const isChecked = checked.includes(item.label);
@@ -213,25 +211,31 @@ export default function ChecklistSection() {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "16px",
-                    padding: "18px 20px",
+                    gap: "14px",
+                    padding: "16px 18px",
                     background: isChecked
                       ? "rgba(26,63,204,0.15)"
                       : "rgba(255,255,255,0.04)",
-                    border: `1px solid ${isChecked ? "rgba(26,63,204,0.4)" : "rgba(255,255,255,0.07)"}`,
+                    border: `1px solid ${
+                      isChecked ? "rgba(26,63,204,0.4)" : "rgba(255,255,255,0.07)"
+                    }`,
                     borderRadius: "var(--radius-md)",
                     cursor: "pointer",
                     textAlign: "left",
                     transition: "all 0.2s ease",
+                    width: "100%",
                   }}
                 >
-                  {/* Emoji */}
+                  {/* Emoji / check */}
                   <div
                     style={{
                       width: "40px",
                       height: "40px",
+                      minWidth: "40px",
                       borderRadius: "10px",
-                      background: isChecked ? "rgba(26,63,204,0.2)" : "rgba(255,255,255,0.06)",
+                      background: isChecked
+                        ? "rgba(26,63,204,0.2)"
+                        : "rgba(255,255,255,0.06)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -240,11 +244,15 @@ export default function ChecklistSection() {
                       transition: "all 0.2s ease",
                     }}
                   >
-                    {isChecked ? <Check size={18} color="#7a9fff" strokeWidth={2.5} /> : item.emoji}
+                    {isChecked ? (
+                      <Check size={18} color="#7a9fff" strokeWidth={2.5} />
+                    ) : (
+                      item.emoji
+                    )}
                   </div>
 
                   {/* Text */}
-                  <div style={{ flex: 1 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
                     <div
                       style={{
                         fontFamily: "var(--font-display)",
@@ -254,11 +262,22 @@ export default function ChecklistSection() {
                         textDecoration: isChecked ? "line-through" : "none",
                         transition: "all 0.2s ease",
                         marginBottom: "2px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {item.label}
                     </div>
-                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "rgba(255,255,255,0.3)",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
                       {item.hint}
                     </div>
                   </div>
@@ -268,8 +287,11 @@ export default function ChecklistSection() {
                     style={{
                       width: "8px",
                       height: "8px",
+                      minWidth: "8px",
                       borderRadius: "50%",
-                      background: isChecked ? "var(--primary)" : "rgba(255,255,255,0.12)",
+                      background: isChecked
+                        ? "var(--primary)"
+                        : "rgba(255,255,255,0.12)",
                       flexShrink: 0,
                       transition: "all 0.2s ease",
                     }}
