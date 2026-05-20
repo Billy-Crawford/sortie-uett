@@ -4,6 +4,7 @@ import ProgrammeSection from "@/components/sections/programme";
 import RoadmapSection from "@/components/sections/roadmap";
 import ChecklistSection from "@/components/sections/checklist";
 import FooterSection from "@/components/sections/footer";
+import FloatingActions from "@/components/ui/floating-actions";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <RoadmapSection />
       <ChecklistSection />
       <FooterSection />
+      <FloatingActions />
     </main>
   );
 }

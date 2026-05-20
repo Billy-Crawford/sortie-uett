@@ -59,18 +59,27 @@ export default function Hero() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 20 }}
-        className="flex items-center justify-between px-8 py-6"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 20,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "16px 24px",
+        }}
       >
+        {/* Logo */}
         <div
           style={{
-            marginLeft: "132px",
-            marginTop: "18px",
-            borderRadius: "12px",
-            overflow: "hidden", // force le crop arrondi
+            borderRadius: "10px",
+            overflow: "hidden",
             height: "106px",
             display: "flex",
             alignItems: "center",
+            flexShrink: 0,
           }}
         >
           <img
@@ -79,8 +88,9 @@ export default function Hero() {
             style={{ height: "100%", width: "auto", objectFit: "contain" }}
           />
         </div>
-      {/* kaplime */}
-        <span className="badge badge-secondary" style={{ margin: "8px 56px 0 0" }}>
+
+        {/* Badge */}
+        <span className="badge badge-secondary" style={{ fontSize: "11px" }}>
           Kpalimé · 04–05 Juil 2026
         </span>
       </motion.div>
@@ -90,7 +100,7 @@ export default function Hero() {
         style={{
           position: "absolute",
           top: "50%",
-          right: "32px",
+          right: "16px",
           transform: "translateY(-50%)",
           zIndex: 20,
           display: "flex",
@@ -117,23 +127,26 @@ export default function Hero() {
       </div>
 
       {/* Main content */}
-      <div className="relative container section-py" style={{ zIndex: 10 }}>
-        <div className="max-w-3xl">
+      <div
+        className="relative container section-py"
+        style={{ zIndex: 10 }}
+      >
+        <div style={{ maxWidth: "680px" }}>
           <motion.p
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "13px",
+              fontSize: "11px",
               fontWeight: 500,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.6)",
-              marginBottom: "20px",
+              marginBottom: "16px",
             }}
           >
-            Union des Étudiants du Togo · Excursion 2026
+            UETT · Excursion 2026 · 1e Edition
           </motion.p>
 
           <motion.h1
@@ -142,12 +155,12 @@ export default function Hero() {
             transition={{ duration: 0.75, delay: 0.2 }}
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(52px, 8vw, 96px)",
+              fontSize: "clamp(44px, 10vw, 96px)",
               fontWeight: 800,
               color: "#fff",
               lineHeight: 1.0,
               letterSpacing: "-0.03em",
-              marginBottom: "24px",
+              marginBottom: "20px",
             }}
           >
             Unité &amp;
@@ -161,11 +174,11 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "clamp(15px, 2vw, 18px)",
+              fontSize: "clamp(14px, 2vw, 18px)",
               color: "rgba(255,255,255,0.72)",
-              maxWidth: "520px",
+              maxWidth: "480px",
               lineHeight: 1.65,
-              marginBottom: "40px",
+              marginBottom: "32px",
             }}
           >
             Une seule famille, une grande aventure. Deux jours de découvertes,
@@ -177,17 +190,28 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
-            style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}
+            style={{
+              display: "flex",
+              gap: "10px",
+              flexWrap: "wrap",
+            }}
           >
             <a
+            
               href="https://wa.me/23560749264?text=Bonjour%20je%20souhaite%20réserver%20ma%20place%20pour%20l'excursion%20Kpalimé%202026"
               target="_blank"
               className="btn btn-secondary"
+              style={{ fontSize: "14px", padding: "13px 22px" }}
             >
-              <MessageCircle size={17} />
+              <MessageCircle size={16} />
               Réserver — 12 500 F
             </a>
-            <a href="#programme" className="btn btn-outline">
+            <a
+            
+              href="#programme"
+              className="btn btn-outline"
+              style={{ fontSize: "14px", padding: "13px 22px" }}
+            >
               Voir le programme
             </a>
           </motion.div>
@@ -203,29 +227,30 @@ export default function Hero() {
             gridTemplateColumns: "repeat(3, 1fr)",
             gap: "1px",
             background: "rgba(255,255,255,0.12)",
-            borderRadius: "16px",
+            borderRadius: "14px",
             overflow: "hidden",
-            marginTop: "64px",
-            maxWidth: "560px",
+            marginTop: "48px",
+            maxWidth: "480px",
           }}
         >
           {[
             { value: "8+", label: "Universités" },
             { value: "2", label: "Jours" },
-            { value: "100%", label: "Ambiance garantie" },
+            { value: "100%", label: "Ambiance" },
           ].map((stat) => (
             <div
               key={stat.label}
               style={{
                 background: "rgba(0,0,0,0.35)",
                 backdropFilter: "blur(12px)",
-                padding: "20px 24px",
+                padding: "16px 12px",
+                textAlign: "center",
               }}
             >
               <div
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(26px, 4vw, 38px)",
+                  fontSize: "clamp(22px, 5vw, 38px)",
                   fontWeight: 800,
                   color: "#fff",
                   lineHeight: 1,
@@ -236,7 +261,7 @@ export default function Hero() {
               <div
                 style={{
                   fontFamily: "var(--font-body)",
-                  fontSize: "12px",
+                  fontSize: "10px",
                   color: "rgba(255,255,255,0.55)",
                   marginTop: "6px",
                   textTransform: "uppercase",
@@ -250,17 +275,17 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — caché sur mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
+        className="hidden sm:flex"
         style={{
           position: "absolute",
           bottom: "32px",
           right: "40px",
           zIndex: 20,
-          display: "flex",
           flexDirection: "column",
           alignItems: "center",
           gap: "6px",

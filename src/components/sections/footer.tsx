@@ -304,7 +304,7 @@ export default function FooterSection() {
             </span>
             <span style={{ width: "1px", height: "16px", background: "rgba(255,255,255,0.12)" }} />
             <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.25)" }}>
-              Union des Étudiants du Togo
+              Union des Eleves Étudiants Tchadien au Togo
             </span>
           </div>
           <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.2)" }}>
