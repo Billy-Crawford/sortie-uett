@@ -8,29 +8,49 @@ const activities = [
     icon: MapPinned,
     tag: "Jour 1",
     title: "Visite guidée",
-    description: "Découverte du Château Vial et des cascades de Kpalimé — un cadre naturel exceptionnel.",
+    description:
+      "Découverte du Château Vial et des cascades de Kpalimé — un cadre naturel exceptionnel.",
     image: "/images/visite-guidee.jpg",
   },
   {
     icon: Dumbbell,
     tag: "Jour 1",
     title: "Défis sportifs",
-    description: "Tir à la corde, course en sac, relais inter-universités. L'esprit de corps avant tout.",
+    description:
+      "Tir à la corde, course en sac, relais inter-universités. L'esprit de corps avant tout.",
     image: "/images/course-sac.jpg",
   },
   {
     icon: Trophy,
     tag: "Jour 1",
     title: "Tournoi bras de fer",
-    description: "Championnat inter-universités dans une ambiance électrique. Qui soulèvera le trophée ?",
+    description:
+      "Championnat inter-universités dans une ambiance électrique. Qui soulèvera le trophée ?",
     image: "/images/bras-de-fer.jpg",
   },
   {
     icon: Hotel,
     tag: "Nuit",
     title: "Hébergement & dîner",
-    description: "Installation à l'hôtel, dîner convivial, soirée libre entre étudiants.",
+    description:
+      "Installation à l'hôtel, dîner convivial, soirée libre entre étudiants.",
     image: "/images/feu-de-camp.jpg",
+  },
+  {
+    icon: Dumbbell,
+    tag: "Jour 1",
+    title: "Tir à la corde",
+    description:
+      "Universités contre universités — force, cohésion et détermination dans une atmosphère enflammée.",
+    image: "/images/tir-corde.jpg",
+  },
+  {
+    icon: MapPinned,
+    tag: "Jour 2",
+    title: "Baignade aux cascades",
+    description:
+      "Plongée dans les eaux cristallines des cascades de Kpalimé. Le clou du séjour.",
+    image: "/images/cascade6.jpg",
   },
 ];
 
@@ -39,50 +59,121 @@ export default function ProgrammeSection() {
     <section id="programme" className="section-tinted section-py">
       <div className="container">
         {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "24px",
-            marginBottom: "56px",
-          }}
-        >
+        <div style={{ marginBottom: "64px" }}>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-          >
-            <span className="badge badge-primary">Programme</span>
-            <h2
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(36px, 5vw, 52px)",
-                fontWeight: 800,
-                marginTop: "20px",
-              }}
-            >
-              2 jours,<br />une aventure
-            </h2>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            viewport={{ once: true }}
             style={{
-              color: "var(--ink-3)",
-              fontSize: "15px",
-              maxWidth: "320px",
-              lineHeight: 1.7,
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              marginBottom: "32px",
             }}
           >
-            Deux jours construits pour mêler découverte culturelle,
-            compétition sportive et liens entre étudiants.
-          </motion.p>
+            <span className="badge badge-primary">Programme</span>
+            <div
+              style={{
+                height: "1px",
+                flex: 1,
+                background:
+                  "linear-gradient(to right, var(--border-md), transparent)",
+              }}
+            />
+            <span
+              style={{
+                fontSize: "12px",
+                fontWeight: 500,
+                color: "var(--ink-3)",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+              }}
+            >
+              04 – 05 Juillet 2026
+            </span>
+          </motion.div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "48px",
+              alignItems: "end",
+            }}
+          >
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(40px, 5.5vw, 64px)",
+                fontWeight: 800,
+                lineHeight: 1.0,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              2 jours,
+              <br />
+              <span style={{ color: "var(--primary)" }}>une</span> aventure
+            </motion.h2>
+
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <p
+                style={{
+                  color: "var(--ink-2)",
+                  fontSize: "16px",
+                  lineHeight: 1.75,
+                  marginBottom: "28px",
+                }}
+              >
+                Deux jours construits pour mêler découverte culturelle,
+                compétition sportive et liens entre étudiants de 8 universités
+                du Togo.
+              </p>
+
+              {/* Stats inline */}
+              <div style={{ display: "flex", gap: "32px" }}>
+                {[
+                  { value: "6+", label: "Activités" },
+                  { value: "8+", label: "Universités" },
+                  { value: "2", label: "Jours" },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "28px",
+                        fontWeight: 800,
+                        color: "var(--ink)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {s.value}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "11px",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "var(--ink-3)",
+                        marginTop: "4px",
+                      }}
+                    >
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Cards */}
@@ -226,3 +317,5 @@ export default function ProgrammeSection() {
     </section>
   );
 }
+
+
